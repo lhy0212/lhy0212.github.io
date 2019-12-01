@@ -198,7 +198,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-01 11:55:31 / 修改时间：11:59:54" itemprop="dateCreated datePublished" datetime="2019-12-01T11:55:31+08:00">2019-12-01</time>
+              <time title="创建时间：2019-12-01 11:55:31 / 修改时间：13:57:03" itemprop="dateCreated datePublished" datetime="2019-12-01T11:55:31+08:00">2019-12-01</time>
             </span>
 
           
@@ -213,79 +213,14 @@
 
       
           <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>正则表达式（regular expression）是一种表达文本模式（即字符串结构）的方法，有点像字符串的模板，常常用来按照“给定模式”匹配文本</p>
-<h3 id="创建正则"><a href="#创建正则" class="headerlink" title="创建正则"></a>创建正则</h3><p>一种是使用字面量，以斜杠表示开始和结束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var regex = /xyz/;</span><br></pre></td></tr></table></figure>
-
-<p>另一种是使用RegExp构造函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var regex = new RegExp(&apos;xyz&apos;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="RepExp实例方法"><a href="#RepExp实例方法" class="headerlink" title="RepExp实例方法"></a>RepExp实例方法</h3><p>test(): 判断是否匹配</p>
-<p>exec(): 返回匹配结果</p>
-<h3 id="String实例方法"><a href="#String实例方法" class="headerlink" title="String实例方法"></a>String实例方法</h3><p>match()：返回匹配结果的数组</p>
-<p>search()：返回匹配索引</p>
-<p>replace()：替换字符串并返回</p>
-<p>split()：分割字符串并返回一个数组</p>
-<hr>
-<h3 id="匹配规则"><a href="#匹配规则" class="headerlink" title="匹配规则"></a>匹配规则</h3><ol>
-<li>点字符（.）</li>
-</ol>
-<p>匹配所有字符。回车、换行、行分隔符、段分隔符除外。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/c.t/.test(&apos;cat&apos;) // true</span><br><span class="line">/c.t/.test(&apos;c2t&apos;) // true</span><br><span class="line">/c.t/.test(&apos;caat&apos;) // false</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>位置字符（^, $）</li>
-</ol>
-<p>^代表开始位置，$代表结束位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^test/.test(&apos;test123&apos;) // true</span><br><span class="line"></span><br><span class="line">/test$/.test(&apos;123test&apos;) // true</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>选择符（|）</li>
-</ol>
-<p>表示或关系（or）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/aa|bb/.test(&apos;bb&apos;) // true</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>转义符（\）</li>
-</ol>
-<p>如果要匹配愿字符，要进行转义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/1+1/.test(&apos;1+1&apos;) // false</span><br><span class="line">/1\+1/.test(&apos;1+1&apos;) // true</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>特殊字符</li>
-</ol>
-<p>常用特殊字符</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\n 换行</span><br><span class="line">\r 回车</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>字符类（[]）</li>
-</ol>
-<p>字符类（class）表示有一系列字符可供选择，只要匹配其中一个就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(1)脱字符（^）</span><br><span class="line">[^xyz]表示除了x、y、z之外都可以匹配</span><br><span class="line">[^]和.类似，可以匹配任意字符，但它包括换行符</span><br><span class="line"></span><br><span class="line">(2)连字符（-）</span><br><span class="line">[a-z]表示a-z之间的字母</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>预定义模式（\d、\w、\s、\b）</li>
-</ol>
-<p>预定义模式指的是某些常见模式的简写方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">\d 匹配0-9之间的任一数字，相当于[0-9]</span><br><span class="line">\D 匹配所有0-9以外的字符，相当于[^0-9]</span><br><span class="line"></span><br><span class="line">\w 匹配任意的字母、数字和下划线，相当于[A-Za-z0-9_]</span><br><span class="line">\W 除所有字母、数字和下划线以外的字符，相当于[^A-Za-z0-9_]</span><br><span class="line"></span><br><span class="line">\s 匹配空格（包括换行符、制表符、空格符等），相等于[ \t\r\n\v\f]</span><br><span class="line">\S 匹配非空格的字符，相当于[^ \t\r\n\v\f]</span><br><span class="line"></span><br><span class="line">\b 匹配词的边界</span><br><span class="line">\B 匹配非词边界，即在词的内部</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>重复类（{}）</li>
-</ol>
-<p>表示精确匹配的次数。{n}表示恰好重复n次，{n,}表示至少重复n次，{n,m}表示重复不少于n次，不多于m次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/lo&#123;2&#125;k/.test(&apos;look&apos;) // true</span><br><span class="line">/lo&#123;2,5&#125;k/.test(&apos;loook&apos;) // true</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li>量词符（?、*、+）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">? 问号表示某个模式出现0次或1次，等同于&#123;0, 1&#125;</span><br><span class="line">* 星号表示某个模式出现0次或多次，等同于&#123;0,&#125;</span><br><span class="line">+ 加号表示某个模式出现1次或多次，等同于&#123;1,&#125;</span><br><span class="line">注意：量词匹配默认为贪婪模式，如果要改为非贪婪模式，要在量词后加一个问号</span><br><span class="line"></span><br><span class="line">// t 出现0次或1次</span><br><span class="line">/t?est/.test(&apos;test&apos;) // true</span><br><span class="line">/t?est/.test(&apos;est&apos;) // true</span><br><span class="line"></span><br><span class="line">// t 出现0次或多次</span><br><span class="line">/t*est/.test(&apos;test&apos;) // true</span><br><span class="line">/t*est/.test(&apos;ttest&apos;) // true</span><br><span class="line">/t*est/.test(&apos;tttest&apos;) // true</span><br><span class="line">/t*est/.test(&apos;est&apos;) // true</span><br><span class="line"></span><br><span class="line">// t 出现1次或多次</span><br><span class="line">/t+est/.test(&apos;test&apos;) // true</span><br><span class="line">/t+est/.test(&apos;ttest&apos;) // true</span><br><span class="line">/t+est/.test(&apos;est&apos;) // false</span><br></pre></td></tr></table></figure>
-<ol start="10">
-<li>修饰符（g、i、m）</li>
-</ol>
-<p>修饰符表示模式的附加规则，放在正则模式的最尾部</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">g 表示全局匹配，加上它以后，正则对象将匹配全部符合条件的结果</span><br><span class="line">i 表示区分大小写，加上i修饰符以后表示忽略大小写</span><br><span class="line">m 表示多行模式加上m修饰符以后，^和$还会匹配行首和行尾，即^和$会识别换行符（\n）</span><br><span class="line"></span><br><span class="line">var regex = /b/g;</span><br><span class="line">var str = &apos;abba&apos;;</span><br><span class="line"></span><br><span class="line">regex.test(str); // true</span><br><span class="line">regex.test(str); // true</span><br><span class="line">regex.test(str); // false</span><br><span class="line"></span><br><span class="line">/abc/.test(&apos;ABC&apos;) // false</span><br><span class="line">/abc/i.test(&apos;ABC&apos;) // true</span><br><span class="line"></span><br><span class="line">/world$/.test(&apos;hello world\n&apos;) // false</span><br><span class="line">/world$/m.test(&apos;hello world\n&apos;) // true</span><br></pre></td></tr></table></figure>
-<ol start="11">
-<li>组匹配（（））</li>
-</ol>
-<p>正则表达式的括号表示分组匹配，括号中的模式可以用来匹配分组的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/fred+/.test(&apos;fredd&apos;) // true</span><br><span class="line">/(fred)+/.test(&apos;fredfred&apos;) // true</span><br></pre></td></tr></table></figure>
-<p>非捕获组：(?:x)表示不返回该组匹配的内容</p>
-<p>先行断言：x(?=y)表示x只有在y前面才会匹配，y不会计入返回结果</p>
-<p>先行否定断言：(x(?!y)表示x只有不在y前面才匹配</p>
-<hr>
-<h3 id="常用的正则表达式"><a href="#常用的正则表达式" class="headerlink" title="常用的正则表达式"></a>常用的正则表达式</h3><p><a href="http://www.fly63.com/article/detial/771" target="_blank" rel="noopener">http://www.fly63.com/article/detial/771</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/01/10%E5%88%86%E9%92%9F%E5%85%A5%E9%97%A8js%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -327,10 +262,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-10 22:49:19 / 修改时间：23:45:37" itemprop="dateCreated datePublished" datetime="2019-11-10T22:49:19+08:00">2019-11-10</time>
+              <time title="创建时间：2019-11-10 22:49:19" itemprop="dateCreated datePublished" datetime="2019-11-10T22:49:19+08:00">2019-11-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-01 13:57:32" itemprop="dateModified" datetime="2019-12-01T13:57:32+08:00">2019-12-01</time>
+              </span>
 
           
 
@@ -349,9 +290,14 @@
 <p>Ctrl + shift + P 调出命令框，输入Markdown，会出现几条预览命令，选中预览。然后按照markdown语法进行编写即可。</p>
 <p>不熟悉语法的可以看下：<a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/markdown/md-tutorial.html</a></p>
 <h3 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line"></span><br><span class="line">$ hexo generate</span><br><span class="line"></span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>如何还有什么不懂的，可以参考下大佬文章：<br><a href="https://wizardforcel.gitbooks.io/markdown-simple-world/0.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/markdown-simple-world/0.html</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/10/create-blog/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
