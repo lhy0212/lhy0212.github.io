@@ -46,16 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="作者很懒，什么也没有说">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;11&#x2F;index.html">
+  <meta name="description" content="防抖概念：触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间 场景：搜索联想、缩放窗口 特点：事件触发时间不是均匀的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数防抖和节流">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;24&#x2F;%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="作者很懒，什么也没有说">
+<meta property="og:description" content="防抖概念：触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间 场景：搜索联想、缩放窗口 特点：事件触发时间不是均匀的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-24T08:36:18.959Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2019/11/">
+<link rel="canonical" href="http://yoursite.com/2020/05/24/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
 
 
 <script id="page-configurations">
@@ -63,13 +64,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | Hexo</title>
+  <title>函数防抖和节流 | Hexo</title>
   
 
 
@@ -168,49 +169,91 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 5 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="小宏">
+      <meta itemprop="description" content="作者很懒，什么也没有说">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          函数防抖和节流
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-24 16:35:43 / 修改时间：16:36:18" itemprop="dateCreated datePublished" datetime="2020-05-24T16:35:43+08:00">2020-05-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <h4 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h4><p>概念：触发事件后在n秒内函数只能执行一次，如果在n秒内又触发了事件，则会重新计算函数执行时间</p>
+<p>场景：搜索联想、缩放窗口</p>
+<p>特点：事件触发时间不是均匀的</p>
+<a id="more"></a>
+<p>不断刷新定时器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, delay) &#123;</span><br><span class="line">    let time = null;</span><br><span class="line">    return function() &#123;</span><br><span class="line">        clearTimeout(time);</span><br><span class="line">        time = setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments)</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h4><p>概念：触发事件在n秒内只执行一次</p>
+<p>场景：稀释函数执行的频率（如直播间点击红心）</p>
+<p>特点：事件触发时间是均匀的</p>
+<p>设置标志位，判断是否触发事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, delay) &#123;</span><br><span class="line">    let flag = true;</span><br><span class="line">    return function() &#123;</span><br><span class="line">        if(!flag) return;</span><br><span class="line">        flag = false;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments);</span><br><span class="line">            flag = true;</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-10T22:49:19+08:00"
-              content="2019-11-10">
-          11-10
-        </time>
-      </div>
+      <footer class="post-footer">
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/10/create-blog/" itemprop="url">
-            <span itemprop="name">hexo如何发布博客</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/24/%E8%B7%A8%E5%9F%9F/" rel="prev" title="跨域">
+      <i class="fa fa-chevron-left"></i> 跨域
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/24/React%EF%BC%8CRedux%EF%BC%8CReact-router%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" rel="next" title="React，Redux，React-router之间的关系">
+      React，Redux，React-router之间的关系 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -239,6 +282,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#防抖"><span class="nav-number">1.</span> <span class="nav-text">防抖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#节流"><span class="nav-number">2.</span> <span class="nav-text">节流</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
